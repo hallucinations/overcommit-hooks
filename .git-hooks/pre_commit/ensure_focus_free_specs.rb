@@ -17,10 +17,10 @@ module Overcommit
 
         def run
           configure_rspec(applicable_files)
-
           return :pass if RSpec.world.example_count.zero?
 
           files = RSpec.world.filtered_examples.reject {|_k, v| v.empty?}.keys.map(&:file_path).uniq
+
           [:fail, "Trying to commit focused spec(s) in:\n\t#{files.join("\n\t")}"]
         end
       end
